@@ -43,7 +43,22 @@
 
 <button></button>
 <script>
+  // Select all divs
+  const divs = document.querySelectorAll('div');
 
+  function logText(e) {
+    console.log(this.classList.value);
+    // Stops bubbling from occuring, only allows for event capture
+    e.stopPropagation();
+  }
+
+  divs.forEach(div => div.addEventListener('click', logText, {
+    // Run the function on the way down to Event Capture, rather than when Bubbling occurs
+    // capture: true,
+
+    // Listen for a click and have event unbind itself
+    once: true
+  }));
 </script>
 </body>
 </html>
